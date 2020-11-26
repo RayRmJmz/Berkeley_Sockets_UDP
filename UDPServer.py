@@ -17,6 +17,7 @@ bytesToSend         = str.encode(msgFromServer)
  
 
 # Create a datagram socket
+# socket (domain, type, protocol)
 
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
@@ -28,7 +29,7 @@ UDPServerSocket.bind((localIP, localPort))
 
  
 
-print("UDP server up and listening")
+print("\n UDP server up and listening\n")
 
  
 
@@ -38,15 +39,22 @@ while(True):
 
     bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 
+    # [0=>message, 1=>address]
+
     message = bytesAddressPair[0]
 
     address = bytesAddressPair[1]
 
+    print( bytesAddressPair)
     clientMsg = "Message from Client:{}".format(message)
     clientIP  = "Client IP Address:{}".format(address)
     
     print(clientMsg)
     print(clientIP)
+   
+    print("\n******************************")
+    print("UDP Server listening....")
+    print("****************************** \n")
 
    
 
